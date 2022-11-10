@@ -20,7 +20,7 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {convertWordArrayToUint8Array, decrypt} from "../utils/AES";
-//import {child, database, get, ref, update} from "../firebase";
+import {child, database, get, ref, update} from "../firebase";
 import {Spinner} from "reactstrap";
 import {default as axios} from "axios";
 import CryptoJS from "crypto-js";
@@ -349,7 +349,7 @@ const UploadPasswords = () => {
                     width: '100%',
                     height: '35%',
                 }}>
-                    <div className='noselect pointer'
+                    {/*<div className='noselect pointer'
                         style={{
                             display: 'flex',
                             alignItems: 'center',
@@ -365,9 +365,9 @@ const UploadPasswords = () => {
                             borderRadius: '25px',
                             color: '#BBBBBB'
                         }}
-                        onClick={() => window.location.replace('/data')}>
+                        onClick={() => window.location.replace('/beta2/data')}>
                         <p style={{ marginTop: '10px' }}>Data</p>
-                    </div>
+                    </div>*/}
 
                     <Container style={{
                         width: '100%',
@@ -549,7 +549,8 @@ const UploadPasswords = () => {
                     </Button>
                 </Stack>
             </div>
-            <p style={{  textAlign: 'center', position: 'absolute', left: '0%', bottom: '0%', marginTop: '50px', width: '100%'}}>When uploading any data or files, these are automatically encrypted using your private key and stored across a fully decentralized network of nodes around the Earth. You and only you have control of your private key, and therefore you and only you can see or access your space, not even astronnaut.space has the possibility to see, interact, or access neither your space nor your private key.</p>
+            {/*<p style={{  textAlign: 'center', position: 'absolute', left: '0%', bottom: '0%', marginTop: '50px', width: '100%'}}>When uploading any data or files, these are automatically encrypted using your private key and stored across a fully decentralized network of nodes around the Earth. You and only you have control of your private key, and therefore you and only you can see or access your space, not even astronnaut.space has the possibility to see, interact, or access neither your space nor your private key.</p>
+        */}
         </div >
     )
 }

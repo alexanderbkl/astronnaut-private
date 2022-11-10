@@ -10,17 +10,17 @@ const Sidebar = () => {
         if (!mounted) {
         localStorage.setItem('accountKey', false);
         sessionStorage.setItem('accountPassword', false);
-        window.location.replace('/');
+        window.location.replace('/beta2/');
         }
         mounted = true;
     }
 
   return (
     <Menu>
-      <a className="menu-item" href="/files">
+      <a className="menu-item" href="/beta2/files">
         Files
       </a>
-      <a className="menu-item" href="/passwords">
+      <a className="menu-item" href="/beta2/passwords">
         Private data
       </a>
       <a className="menu-item" onClick={logOut} href="/">

@@ -1,9 +1,9 @@
 import '../App.css';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import * as Name from 'w3name';
-import {Web3Storage} from 'web3.storage';
-import {stringToNameBytes} from '../utils/nameParsing'
-import {TextField} from '@mui/material';
+import { Web3Storage } from 'web3.storage';
+import { stringToNameBytes } from '../utils/nameParsing'
+import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -11,15 +11,15 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import {deletePassword} from '../functions/deletePassword';
+import { deletePassword } from '../functions/deletePassword';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import {convertWordArrayToUint8Array, decrypt} from "../utils/AES";
-//import {child, database, get, ref, update} from "../firebase";
+import { convertWordArrayToUint8Array, decrypt } from "../utils/AES";
+import { child, database, get, ref, update } from "../firebase";
 import { Spinner } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {default as axios} from "axios";
+import { default as axios } from "axios";
 import CryptoJS from "crypto-js";
 import Constants from "../Constants.js";
 
@@ -93,7 +93,7 @@ const UploadData = () => {
 
                 axios
                     .get(
-                        "https://w3s.link"+revisiontwo.value,
+                        "https://w3s.link" + revisiontwo.value,
                         {
                             signal: controllerFetchDownload.signal,
                             responseType: "text",
@@ -189,7 +189,7 @@ const UploadData = () => {
 
             axios
                 .get(
-                    "https://w3s.link"+revision.value,
+                    "https://w3s.link" + revision.value,
                     {
                         signal: controllerFetchDownload.signal,
                         responseType: "text",
@@ -237,7 +237,7 @@ const UploadData = () => {
                     await Name.publish(nextRevision, name.key);
 
 
-                  /*  let notes = 0;
+                    let notes = 0;
                     const dbRef = ref(database);
                     await get(child(dbRef, `users/${name.toString()}`)).then((snapshot) => {
                         if (snapshot.exists()) {
@@ -249,10 +249,10 @@ const UploadData = () => {
                         console.error(error);
                     });
                     await update(ref(database, `users/${name.toString()}`), {
-                        notes: notes+1,
+                        notes: notes + 1,
                     });
                     console.log(notes);
-*/
+
 
                     mounted = true;
                     setSpinnerHidden(true);
@@ -281,8 +281,8 @@ const UploadData = () => {
 
 
             let filesListTemp = filesList;
-            for(var f in filesListTemp) {
-                if(filesListTemp[f].date === date) {
+            for (var f in filesListTemp) {
+                if (filesListTemp[f].date === date) {
                     delete filesListTemp[f];
                 }
             }
@@ -296,199 +296,203 @@ const UploadData = () => {
     }
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'row',
-                height: '100vh',
-                backgroundColor: '#EEEEEE'
-            }}
-        >
-            <p hidden={spinnerVisible} style={{display: 'flex', position: 'absolute', marginBottom: "100px", zIndex: 100, justifyContent: 'center', alignItems: 'center'}} color={"primary"}><b>Encrypting...</b></p>
-            <Spinner hidden={spinnerVisible} style={{display: 'flex', position: 'absolute', zIndex: 100, justifyContent: 'center', alignItems: 'center'}} color={"primary"}/>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                height: '100vh',
-                alignItems: 'center',
-                width: '25vw',
-                marginRight: '-1px',
-            }}>
+        <div>
+            <div
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    height: '100vh',
+                    backgroundColor: '#EEEEEE'
+                }}
+            >
 
+                <p hidden={spinnerVisible} style={{ display: 'flex', position: 'absolute', marginBottom: "100px", zIndex: 100, justifyContent: 'center', alignItems: 'center' }} color={"primary"}><b>Encrypting...</b></p>
+                <Spinner hidden={spinnerVisible} style={{ display: 'flex', position: 'absolute', zIndex: 100, justifyContent: 'center', alignItems: 'center' }} color={"primary"} />
                 <div style={{
                     display: 'flex',
-                    position: 'relative',
-                    width: '100%',
-                    height: '35%',
+                    flexDirection: 'row',
+                    height: '100vh',
+                    alignItems: 'center',
+                    width: '25vw',
+                    marginRight: '-1px',
                 }}>
-                    <div
-                        className='noselect'
+
+                    <div style={{
+                        display: 'flex',
+                        position: 'relative',
+                        width: '100%',
+                        height: '35%',
+                    }}>
+                        <div
+                            className='noselect'
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                position: 'absolute',
+                                width: '35vw',
+                                height: '5vh',
+                                left: -1,
+                                top: '-5vh',
+                                backgroundColor: '#fefeff',
+                                borderRight: '1px solid #DDDDDD',
+                                borderBottom: '1px solid #EEEEEE',
+                                borderTopLeftRadius: '25px',
+                                borderTopRightRadius: '10px',
+                            }}>
+                            <h3>Data</h3>
+                        </div>
+
+
+                        <Container style={{
+                            width: '100%',
+                            height: '100%',
+                            backgroundColor: 'white',
+                            borderBottomLeftRadius: '10px',
+                            textAlign: 'left',
+                            wordWrap: 'break-word',
+                            overflow: 'auto'
+                        }}>
+                            {filesList.map(item => (
+                                <Row key={item.date}
+                                    style={{
+                                        flex: '1',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        backgroundColor: 'white',
+                                        padding: '10px',
+                                        margin: '10px',
+                                        borderRadius: '10px',
+                                        border: '1px solid #DDDDDD'
+                                    }}>
+
+                                    <Col>
+                                        <Row
+                                            style={{
+                                                width: '100%',
+                                                flexWrap: 'nowrap',
+                                                alignItems: 'baseline',
+                                                position: 'relative'
+                                            }}>
+                                            <Col sm={9}>
+                                                <p
+                                                    style={{
+                                                        marginTop: '10px',
+                                                        fontSize: '1.5vw'
+                                                    }}>
+                                                    {item.title}
+                                                </p>
+
+                                            </Col>
+                                            <Col>
+                                                <DropdownButton
+                                                    style={{
+                                                        position: 'absolute',
+                                                        top: '0',
+                                                        right: '0',
+                                                        marginRight: '-10px'
+                                                    }}
+                                                    id="dropdown-basic-button"
+                                                    title="">
+                                                    <Dropdown.Item onClick={() => beginDeleteData(item.date, selectedKey)}>Delete</Dropdown.Item>
+                                                </DropdownButton>
+                                            </Col>
+                                        </Row>
+
+                                    </Col>
+
+                                    <Col>
+
+                                        <FormControl sx={{ m: 1, width: '15vw' }} variant="outlined">
+                                            <InputLabel htmlFor="outlined-adornment-note">Note</InputLabel>
+                                            <OutlinedInput
+                                                value={item.note}
+                                                multiline
+                                                maxRows={4}
+                                                label="Note"
+                                            />
+                                        </FormControl>
+
+                                    </Col>
+
+                                </Row>
+
+                            ))}
+                        </Container>
+                    </div>
+                </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '25vw',
+                        height: '35vh',
+                        borderBottomRightRadius: '10px',
+                        borderRight: '1px solid #DDDDDD',
+                        backgroundColor: '#ffffff',
+                        position: 'relative',
+                    }}>
+                    {/*<div className='noselect pointer'
                         style={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
+                            alignSelf: 'center',
                             position: 'absolute',
-                            width: '35vw',
-                            height: '5vh',
-                            left: -1,
+                            width: '10vw',
+                            height: '4vh',
+                            right: -1,
                             top: '-5vh',
-                            backgroundColor: '#fefeff',
+                            backgroundColor: '#DDDDDD',
                             borderRight: '1px solid #DDDDDD',
                             borderBottom: '1px solid #EEEEEE',
-                            borderTopLeftRadius: '25px',
-                            borderTopRightRadius: '10px',
-                        }}>
-                        <h3>Data</h3>
-                    </div>
+                            borderRadius: '25px',
+                            color: '#BBBBBB'
+                        }}
+                        onClick={() => window.location.replace('/beta2/passwords')}>
+                        <p style={{ marginTop: '10px' }}>Passwords</p>
+                    </div>*/}
 
 
-                    <Container style={{
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'white',
-                        borderBottomLeftRadius: '10px',
-                        textAlign: 'left',
-                        wordWrap: 'break-word',
-                        overflow: 'auto'
-                    }}>
-                        {filesList.map(item => (
-                            <Row key={item.date}
-                                style={{
-                                    flex: '1',
-                                    flexDirection: 'column',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    backgroundColor: 'white',
-                                    padding: '10px',
-                                    margin: '10px',
-                                    borderRadius: '10px',
-                                    border: '1px solid #DDDDDD'
-                                }}>
+                    <FormControl sx={{ m: 1, width: '15vw' }} variant="outlined">
+                        <TextField
+                            value={values.titleInput}
+                            onChange={handleChange('titleInput')}
 
-                                <Col>
-                                    <Row
-                                        style={{
-                                            width: '100%',
-                                            flexWrap: 'nowrap',
-                                            alignItems: 'baseline',
-                                            position: 'relative'
-                                        }}>
-                                        <Col sm={9}>
-                                            <p
-                                                style={{
-                                                    marginTop: '10px',
-                                                    fontSize: '1.5vw'
-                                                }}>
-                                                {item.title}
-                                            </p>
+                            id="outlined-basic-title-field"
+                            label="Title"
+                            variant="outlined" />
+                    </FormControl>
 
-                                        </Col>
-                                        <Col>
-                                            <DropdownButton
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '0',
-                                                    right: '0',
-                                                    marginRight: '-10px'
-                                                }}
-                                                id="dropdown-basic-button"
-                                                title="">
-                                                <Dropdown.Item onClick={() => beginDeleteData(item.date, selectedKey)}>Delete</Dropdown.Item>
-                                            </DropdownButton>
-                                        </Col>
-                                    </Row>
-
-                                </Col>
-
-                                <Col>
-
-                                    <FormControl sx={{ m: 1, width: '15vw' }} variant="outlined">
-                                        <InputLabel htmlFor="outlined-adornment-note">Note</InputLabel>
-                                        <OutlinedInput
-                                            value={item.note}
-                                            multiline
-                                            maxRows={4}
-                                            label="Note"
-                                        />
-                                    </FormControl>
-
-                                </Col>
-
-                            </Row>
-
-                        ))}
-                    </Container>
+                    <FormControl sx={{ m: 1, width: '15vw' }} variant="outlined">
+                        <InputLabel htmlFor="outlined-adornment-password-label">Note</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password-input"
+                            value={values.noteInput}
+                            multiline
+                            maxRows={4}
+                            onChange={handleChange('noteInput')}
+                            autoComplete="current-password"
+                            label="Note"
+                        />
+                    </FormControl>
+                    <Stack spacing={2} direction="row">
+                        <Button
+                            variant="contained"
+                            onClick={() => uploadData()}
+                            sx={{ marginTop: '5px', backgroundColor: "#4455bb" }}>
+                            Upload
+                        </Button>
+                    </Stack>
                 </div>
+                {/*<p style={{  textAlign: 'center', position: 'absolute', left: '0%', bottom: '0%', marginTop: '50px', width: '100%'}}>When uploading any data or files, these are automatically encrypted using your private key and stored across a fully decentralized network of nodes around the Earth. You and only you have control of your private key, and therefore you and only you can see or access your space, not even astronnaut.space has the possibility to see, interact, or access neither your space nor your private key.</p>
+        */}
             </div>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '25vw',
-                    height: '35vh',
-                    borderBottomRightRadius: '10px',
-                    borderRight: '1px solid #DDDDDD',
-                    backgroundColor: '#ffffff',
-                    position: 'relative',
-                }}>
-                <div className='noselect pointer'
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        alignSelf: 'center',
-                        position: 'absolute',
-                        width: '10vw',
-                        height: '4vh',
-                        right: -1,
-                        top: '-5vh',
-                        backgroundColor: '#DDDDDD',
-                        borderRight: '1px solid #DDDDDD',
-                        borderBottom: '1px solid #EEEEEE',
-                        borderRadius: '25px',
-                        color: '#BBBBBB'
-                    }}
-                    onClick={() => window.location.replace('/passwords')}>
-                    <p style={{ marginTop: '10px' }}>Passwords</p>
-                </div>
-
-
-                <FormControl sx={{ m: 1, width: '15vw' }} variant="outlined">
-                    <TextField
-                        value={values.titleInput}
-                        onChange={handleChange('titleInput')}
-
-                        id="outlined-basic-title-field"
-                        label="Title"
-                        variant="outlined" />
-                </FormControl>
-
-                <FormControl sx={{ m: 1, width: '15vw' }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password-label">Note</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-password-input"
-                        value={values.noteInput}
-                        multiline
-                        maxRows={4}
-                        onChange={handleChange('noteInput')}
-                        autoComplete="current-password"
-                        label="Note"
-                    />
-                </FormControl>
-                <Stack spacing={2} direction="row">
-                    <Button
-                        variant="contained"
-                        onClick={() => uploadData()}
-                        sx={{ marginTop: '5px', backgroundColor: "#4455bb" }}>
-                        Upload
-                    </Button>
-                </Stack>
-            </div>
-            <p style={{  textAlign: 'center', position: 'absolute', left: '0%', bottom: '0%', marginTop: '50px', width: '100%'}}>When uploading any data or files, these are automatically encrypted using your private key and stored across a fully decentralized network of nodes around the Earth. You and only you have control of your private key, and therefore you and only you can see or access your space, not even astronnaut.space has the possibility to see, interact, or access neither your space nor your private key.</p>
         </div>
     )
 }

@@ -67,7 +67,7 @@ const Authentication = () => {
 
   const handleDecrypt = () => {
     setAccountPassword(values.password);
-    window.location.replace("/files");
+    window.location.replace("/beta2/files");
     setValues({
       ...values,
       open: !values.open,
@@ -97,7 +97,7 @@ const Authentication = () => {
 
 if (i <1) {
   if (accountKey !== false && accountPassword !== false) {
-    window.location.replace("/files");
+    window.location.replace("/beta2/files");
     i++;
 
   } else if (accountKey !== false && accountPassword === false) {

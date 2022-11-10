@@ -2,7 +2,7 @@ import '../App.css';
 import {Web3Storage} from 'web3.storage';
 import * as Name from 'w3name';
 import {stringToNameBytes} from '../utils/nameParsing'
-//import {child, database, get, ref, update} from "../firebase";
+import {child, database, get, ref, update} from "../firebase";
 import CryptoJS from "crypto-js";
 import {default as axios} from "axios";
 import {convertWordArrayToUint8Array} from "../utils/AES";
@@ -27,14 +27,6 @@ export async function uploadFile(selectedFile, selectedKey) {
 
 
             //RESOLVE IPNS
-
-
-
-
-
-
-
-
 
             // Pack files into a CAR and send to web3.storage
 
@@ -132,7 +124,7 @@ export async function uploadFile(selectedFile, selectedKey) {
                         await Name.publish(nextRevision, name.key);
 
                         let files = 0;
-                      /*  const dbRef = ref(database);
+                        const dbRef = ref(database);
                         await get(child(dbRef, `users/${name.toString()}`)).then((snapshot) => {
                             if (snapshot.exists()) {
                                 files = snapshot.child("notes").val();
@@ -146,7 +138,7 @@ export async function uploadFile(selectedFile, selectedKey) {
                             files: files + 1,
                         });
                         console.log(files);
-*/
+
                         console.log("File uploaded successfuly.");
                         alert("File uploaded successfuly.");
                         window.location.reload();

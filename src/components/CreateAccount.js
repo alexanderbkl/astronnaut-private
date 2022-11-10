@@ -17,7 +17,7 @@ import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import {encrypt} from "../utils/AES";
-//import {database, ref, update} from "../firebase.js";
+import {database, ref, update} from "../firebase.js";
 import CryptoJS from "crypto-js";
 import Constants from "../Constants.js";
 
@@ -170,14 +170,14 @@ const CreateAccount = () => {
         //RESOLVE IPNS
 
 
-         /*   await update(ref(database, `users/${name.toString()}`), {
+            await update(ref(database, `users/${name.toString()}`), {
                 pubkey: name.toString(),
                 notes: 1,
                 passwords: 1,
                 files: 1,
                 creationdate: Date.now(),
             });
-*/
+
 
 
 
@@ -215,7 +215,7 @@ const CreateAccount = () => {
 
         console.log("Successfuly created account:", accountKey);
         alert("Successfuly created account.");
-        window.location.replace('/files');
+        window.location.replace('/beta2/files');
 
 
     }
