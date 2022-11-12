@@ -1,6 +1,6 @@
 import '../App.css';
 import './FilesComponent.css'
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import * as Name from 'w3name';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -16,9 +16,10 @@ import upload_button from '../assets/upload_button.png';
 import { uploadFile } from '../functions/uploadFile';
 import CheckIcon from '@mui/icons-material/Check';
 import IconButton from '@mui/material/IconButton';
-import {Spinner} from "reactstrap";
+import { Spinner } from "reactstrap";
 import CryptoJS from "crypto-js";
 import { convertWordArrayToUint8Array } from "../utils/AES";
+import ounn from "../assets/ounn.png";
 
 const axios = require("axios").default;
 
@@ -68,7 +69,7 @@ const FilesComponent = (props) => {
                 //UPDATE IPNS
                 axios
                     .get(
-                        "https://w3s.link"+revisiontwo.value,
+                        "https://w3s.link" + revisiontwo.value,
                         {
                             signal: controllerFetchDownload.signal,
                             responseType: "text",
@@ -82,27 +83,27 @@ const FilesComponent = (props) => {
                         var typedArray = convertWordArrayToUint8Array(bytes);               // Convert: WordArray -> typed array
                         var typedArrayJSON = JSON.parse(new TextDecoder().decode(typedArray));
                         console.log(JSON.stringify(typedArrayJSON));
-                            let filesList = []
-                            Object.keys(typedArrayJSON.files).map(function (key) {
-                                return typedArrayJSON.files[key];
-                            }).map(function (file) {
-                                return (
-                                    {
-                                        cid: file.cid,
-                                        name: file.name,
-                                        size: file.size,
-                                        type: file.type,
-                                        dir: file.dir,
-                                        private: file.private,
-                                        date: file.date
-                                    }
-                                )
-                            }).map(function (file) {
-                                return filesList.push(file);
-                            });
+                        let filesList = []
+                        Object.keys(typedArrayJSON.files).map(function (key) {
+                            return typedArrayJSON.files[key];
+                        }).map(function (file) {
+                            return (
+                                {
+                                    cid: file.cid,
+                                    name: file.name,
+                                    size: file.size,
+                                    type: file.type,
+                                    dir: file.dir,
+                                    private: file.private,
+                                    date: file.date
+                                }
+                            )
+                        }).map(function (file) {
+                            return filesList.push(file);
+                        });
 
-                            setFilesList(filesList);
-                            mounted = true;
+                        setFilesList(filesList);
+                        mounted = true;
 
 
                     })
@@ -147,7 +148,7 @@ const FilesComponent = (props) => {
         hiddenFileInput.current.click();
         setSelectedFile(hiddenFileInput);
         console.log(hiddenFileInput)
-        
+
 
     }
 
@@ -160,14 +161,14 @@ const FilesComponent = (props) => {
     if (selectedFile != null) {
 
 
-            async function uploadReady() {
-                await uploadFile(selectedFile, selectedKey);
-                test = true
-            }
+        async function uploadReady() {
+            await uploadFile(selectedFile, selectedKey);
+            test = true
+        }
         if (!test) {
             uploadReady().then(r => (
                 uploadDone()
-        ))
+            ))
         }
 
     }
@@ -206,7 +207,7 @@ const FilesComponent = (props) => {
         });
         axios
             .get(
-                "https://"+item.cid+".ipfs.w3s.link",
+                "https://" + item.cid + ".ipfs.w3s.link",
                 {
                     signal: controllerFetchDownload.signal,
                     responseType: "text",
@@ -235,7 +236,7 @@ const FilesComponent = (props) => {
                 a.setAttribute("download", item.name);
                 win.document.body.append(a);
                 a.click();
-                win.location.href=url;
+                win.location.href = url;
                 win.window.URL.revokeObjectURL(url);
                 a.remove();
             })
@@ -253,16 +254,21 @@ const FilesComponent = (props) => {
 
 
     return (
+        <div>
+            <div style={{position: 'absolute', top: 0, left: 0, right: 0, height: "20%"}}>
+            <img style={{ position: 'relative', height: "75%", padding: "10px" }} src={ounn} alt="logo.png"></img>
+            </div>
         <div style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flexDirection: 'row',
+            flexDirection: 'column',
             height: '100%',
             backgroundColor: '#EEEEEE'
         }}>
-            <p hidden={spinnerVisible} style={{display: 'flex', position: 'absolute', marginBottom: "100px", zIndex: 100, justifyContent: 'center', alignItems: 'center'}} color={"primary"}><b>Encrypting...</b></p>
-            <Spinner hidden={spinnerVisible} style={{display: 'flex', position: 'absolute', zIndex: 100, justifyContent: 'center', alignItems: 'center'}} color={"primary"}/>
+          
+            <p hidden={spinnerVisible} style={{ display: 'flex', position: 'absolute', marginBottom: "100px", zIndex: 100, justifyContent: 'center', alignItems: 'center' }} color={"primary"}><b>Encrypting...</b></p>
+            <Spinner hidden={spinnerVisible} style={{ display: 'flex', position: 'absolute', zIndex: 100, justifyContent: 'center', alignItems: 'center' }} color={"primary"} />
 
 
             <div className="filesContainer" >
@@ -276,17 +282,17 @@ const FilesComponent = (props) => {
                     borderBottomLeftRadius: '15px',
                 }}>
                     <input type="file"
-                           ref={hiddenFileInput}
-                           onChange={(e) => setSelectedFile(e.target.files)}
-                           style={{ display: 'none' }}
+                        ref={hiddenFileInput}
+                        onChange={(e) => setSelectedFile(e.target.files)}
+                        style={{ display: 'none' }}
                     />
                     <img className="noselect pointer" style={{
                         width: '100%',
                         height: '100%',
                     }}
-                         alt="upload_button.png"
-                         src={upload_button}
-                         onClick={(e) => handleClick()}
+                        alt="upload_button.png"
+                        src={upload_button}
+                        onClick={(e) => handleClick()}
                     />
 
 
@@ -330,7 +336,7 @@ const FilesComponent = (props) => {
                             </Col>
                             <Col sm={2}>
                                 <IconButton onClick={() => verifyFile(item.cid)} color="primary" aria-label="add to shopping cart">
-                                    <CheckIcon/>
+                                    <CheckIcon />
                                 </IconButton>
                             </Col>
                         </Row>
@@ -338,6 +344,7 @@ const FilesComponent = (props) => {
                     ))}
                 </Container>
             </div>
+        </div>
         </div>
 
     )

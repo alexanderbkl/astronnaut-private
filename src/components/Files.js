@@ -113,13 +113,12 @@ const Files = () => {
                     </div>
                 <div id="page-wrap">
                     
-                    <h1>Upload files</h1>
                     <FilesComponent selectedKey={selectedKey} />
                     {/*Button onclick executeScroll to the next page-wrap */}
                     <button style={{ position: 'absolute', top: '90%', left: '45%', width: "10vw", padding: "10px" }} onClick={() => { scrollToNext(1) }}>Next</button>
-                    <h1 style={{ position: 'absolute', top: '120%', left: '0', right: '0' }}>Upload data</h1>
+                   {/* <h1 style={{ position: 'absolute', top: '120%', left: '0', right: '0' }}>Upload data</h1>
                     <h1 style={{ position: 'absolute', top: '220%', left: '0', right: '0' }}>Upload passwords</h1>
-
+*/}
                 </div>
 
             </div>
