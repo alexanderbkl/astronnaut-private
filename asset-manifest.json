@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/astronnaut-private/static/css/main.2024d7b7.css",
-    "main.js": "/astronnaut-private/static/js/main.46e716e4.js",
+    "main.js": "/astronnaut-private/static/js/main.1ac05b06.js",
     "static/js/787.f430186f.chunk.js": "/astronnaut-private/static/js/787.f430186f.chunk.js",
     "static/media/upload_button.png": "/astronnaut-private/static/media/upload_button.8a26790a00453d7363a2.png",
     "static/media/logo.png": "/astronnaut-private/static/media/logo.6bfb1e7b1cfe7cf41de6.png",
     "static/media/filePublic.png": "/astronnaut-private/static/media/filePublic.2537e54cd0d227be37dd.png",
     "index.html": "/astronnaut-private/index.html",
     "main.2024d7b7.css.map": "/astronnaut-private/static/css/main.2024d7b7.css.map",
-    "main.46e716e4.js.map": "/astronnaut-private/static/js/main.46e716e4.js.map",
+    "main.1ac05b06.js.map": "/astronnaut-private/static/js/main.1ac05b06.js.map",
     "787.f430186f.chunk.js.map": "/astronnaut-private/static/js/787.f430186f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2024d7b7.css",
-    "static/js/main.46e716e4.js"
+    "static/js/main.1ac05b06.js"
   ]
 }
